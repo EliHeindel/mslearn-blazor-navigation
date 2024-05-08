@@ -2,7 +2,6 @@
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 @inject OrderState OrderState
-
 <div class="main">
   <h1>Blazing Pizzas</h1>
   <ul class="pizza-cards">
@@ -14,7 +13,7 @@
           <div class="pizza-info">
           <span class="title">@special.Name</span>
           @special.Description
-          <span class="price">@special.GetFormattedBasePrice()</span>
+          <span class="price">$@special.GetFormattedBasePrice()</span>
           </div>
         </li>
       }
@@ -42,7 +41,7 @@
                   <a @onclick="@(() => OrderState.RemoveConfiguredPizza(configuredPizza))" class="delete-item">x</a>
                   <div class="title">@(configuredPizza.Size)" @configuredPizza.Special.Name</div>
                   <div class="item-price">
-                      @configuredPizza.GetFormattedTotalPrice()
+                      $@configuredPizza.GetFormattedTotalPrice()
                   </div>
               </div>
             }
@@ -55,7 +54,7 @@
 
     <div class="order-total @(order.Pizzas.Any() ? "" : "hidden")">
         Total:
-        <span class="total-price">@order.GetFormattedTotalPrice()</span>
+        <span class="total-price">$@order.GetFormattedTotalPrice()</span>
         <a href="checkout" class="@(OrderState.Order.Pizzas.Count == 0 ? "btn btn-warning disabled" : "btn btn-warning")">
             Order >
         </a>
